@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Kanit:ital@1&display=swap');
+
+.login-container{
+    background-color: blueviolet;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    .login-wrapper{
+        
+        .login-title , .login-title2{
+            color: blueviolet;
+            padding: 7px;
+            font-family: 'Courgette', cursive;
+        }
+
+        .login-title2{
+            font-size: 25px;
+        }
+
+        .reg{
+            font-family: 'Kanit', sans-serif;
+        }
+
+        form{
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 25px;
+            
+            .user, .mail, .pwd{
+                border: none;
+                border-bottom: 2px solid blueviolet;
+                height: 5vh;
+                padding: 2%;
+            }
+
+            .user:focus, .pwd:focus{
+                outline: none;
+            }
+            
+            .sb-btn{
+                background-color: blueviolet;
+                color: white;
+                padding: 13px;
+                margin-top: 5%;
+            }
+        }
+        background-color: white;
+        padding: 20px;
+        height: 60vh;
+        width: 25%;
+        text-align: center;
+        border-radius: 5%;
+    }
+}
+
