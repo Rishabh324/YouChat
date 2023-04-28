@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Courgette&family=Kanit:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 
 .login-container{
     background-color: blueviolet;
@@ -12,7 +14,7 @@
         
         .login-title , .login-title2{
             color: blueviolet;
-            padding: 7px;
+            padding: 2px;
             font-family: 'Courgette', cursive;
         }
 
@@ -22,30 +24,49 @@
 
         .reg{
             font-family: 'Kanit', sans-serif;
+            cursor: pointer;
         }
 
         form{
             display: flex;
             flex-direction: column;
             gap: 20px;
-            padding: 25px;
+            padding: 20px;
             
             .user, .mail, .pwd{
                 border: none;
                 border-bottom: 2px solid blueviolet;
-                height: 5vh;
+                height: 4vh;
                 padding: 2%;
             }
 
             .user:focus, .pwd:focus{
                 outline: none;
             }
+
+            .avat-div{
+                display: flex;
+                align-items: center;
+                justify-content: start;
+                cursor: pointer;
+                font-family: 'Kanit', sans-serif;
+
+                input{
+                    display: none;
+                }
+
+                label,img{
+                    cursor: pointer;
+                }
+
+            }
             
             .sb-btn{
                 background-color: blueviolet;
                 color: white;
                 padding: 13px;
-                margin-top: 5%;
+                margin-top: 3%;
+                cursor: pointer;
             }
         }
         background-color: white;

@@ -1,17 +1,48 @@
 import "./login.scss";
+import { useState } from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { useNavigate, Link } from "react-router-dom";
+import { auth } from '../firebase';
 
 const Login = () => {
+    const [email, setEmail] = useState(null);
+    const [pswd, setPswd] = useState(null);
+    const [err, setErr] = useState(false);
+    const navigate = useNavigate();
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        // console.log(name, 'hello', value);
+        if (name === "email") {
+            setEmail(value);
+        } else if (name === "pswd") {
+            setPswd(value);
+        }
+    }
+
+    const handleClick = async (e) => {
+        e.preventDefault();
+
+        try {
+            await signInWithEmailAndPassword(auth, email, pswd);
+            navigate("/");
+        }
+        catch (e) {
+            setErr(true);
+        }
+    }
+
     return (
         <div className="login-container">
             <div className="login-wrapper">
                 <h1 className="login-title">MatesApp</h1>
                 <p className="login-title2">Login</p>
                 <form className="login-form">
-                    <input className="user" type="text" placeholder="Username" />
-                    <input className="pwd" type="password" placeholder="Password" />
-                    <button className="sb-btn" type="submit">Login</button>
+                    <input className="user" name='email' type="text" placeholder="Email" onChange={handleChange} />
+                    <input className="pwd" name='pswd' type="password" placeholder="Password" onChange={handleChange} />
+                    <button className="sb-btn" type="submit" onClick={handleClick}>Login</button>
                 </form>
-                <p className="reg-temp">Don't have an account? <span className="reg">Register</span></p>
+                <p className="reg-temp">Don't have an account? <span className="reg"><Link to='/register'>Register</Link></span></p>
             </div>
         </div>
     );
