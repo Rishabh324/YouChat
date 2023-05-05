@@ -1,14 +1,14 @@
 import Scaffold from "./Scaffold";
 import Message from "./Message";
 import "./rightstyles.scss"
-import Chat from "./Chat";
+import Chatting from "./Chatting";
 
 const Rightbar = () => {
     return (
         <div className="rightbar">
             <Scaffold />
             <div className='msgs'>
-                <Chat />
+                <Chatting />
             </div>
             <Message />
         </div>
