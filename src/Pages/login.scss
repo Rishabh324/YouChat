@@ -2,6 +2,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 
+@mixin mobile{
+    @media screen and (max-width: 480px){
+        @content;
+    }
+}
+
+@mixin tablet{
+    @media screen and (max-width: 786px){
+        @content;
+    }
+}
+
+@mixin laptop{
+    @media screen and (max-width: 1200px){
+        @content;
+    }
+}
+
 .login-container{
     background-color: blueviolet;
     height: 100vh;
@@ -14,11 +32,11 @@
         
         .login-title , .login-title2{
             color: blueviolet;
-            padding: 7px;
             font-family: 'Courgette', cursive;
         }
 
         .login-title2{
+            margin-top: 0.8rem;
             font-size: 25px;
         }
 
@@ -30,7 +48,7 @@
             display: flex;
             flex-direction: column;
             gap: 20px;
-            padding: 25px;
+            padding: 20px;
             
             .user, .pwd{
                 border: none;
@@ -48,14 +66,23 @@
                 color: white;
                 padding: 13px;
                 margin-top: 5%;
+                border-radius: 15px 15px 15px 15px;
+                cursor: pointer;
+                &:hover{
+                    color: blueviolet;
+                }
             }
         }
         background-color: white;
-        padding: 20px;
-        height: 50vh;
+        padding: 25px;
+        height: 50%;
         width: 25%;
         text-align: center;
         border-radius: 5%;
+        @include laptop{
+            width: 40%;
+            height: 60%;
+        }
     }
 }
 

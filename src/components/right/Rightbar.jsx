@@ -4,6 +4,7 @@ import "./rightstyles.scss"
 import Chatting from "./Chatting";
 
 const Rightbar = () => {
+
     return (
         <div className="rightbar">
             <Scaffold />

@@ -2,7 +2,7 @@ import "./register.scss";
 import { useState, useEffect } from "react";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db, storage } from '../firebase';
-import { ref, uploadBytesResumable, getDownloadURL, listAll } from "firebase/storage";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
 import { useNavigate, Link } from "react-router-dom";
 
@@ -60,8 +60,6 @@ const Register = () => {
                     })
                 }
             );
-
-
         }
         catch (e) {
             setErr(true);
@@ -69,11 +67,11 @@ const Register = () => {
     }
 
     return (
-        <div className="login-container">
-            <div className="login-wrapper">
-                <h1 className="login-title">MatesApp</h1>
-                <p className="login-title2">Register</p>
-                <form className="login-form">
+        <div className="register-container">
+            <div className="register-wrapper">
+                <h1 className="register-title">MatesApp</h1>
+                <p className="register-title2">Register</p>
+                <form className="register-form">
                     <input className="user" name='user' type="text" placeholder="Username" onChange={handleChange} />
                     <input className="mail" name='mail' type="email" placeholder="Email" onChange={handleChange} />
                     <input className="pwd" name='pwd' type="password" placeholder="Password" onChange={handleChange} />

@@ -1,21 +1,91 @@
+import { useContext, useState } from "react";
+import { AuthContext } from "../../context/AuthContext";
+import { ChatContext } from "../../context/chatContext";
+import { Timestamp, arrayUnion, doc, serverTimestamp, updateDoc } from "firebase/firestore";
+import { v4 as uuid } from 'uuid';
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { db } from "../../firebase";
+
 const Message = () => {
+
+    const [text, setText] = useState('');
+    const [image, setImage] = useState(null);
+
+    const { currentUser } = useContext(AuthContext);
+    const { data } = useContext(ChatContext);
+
     const auto_height = (e) => {
         console.log(e);
         e.height = "1px";
         e.height = (e.scrollHeight) + "px";
     }
+
+    const handleSend = async () => {
+
+        if (image) {
+            const storageRef = ref(storage, uuid());
+            const uploadTask = uploadBytesResumable(storageRef, image);
+
+
+            uploadTask.on('state_changed',
+                () => {
+                    getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+                        await updateDoc(doc(db, "chats", data.chatId), {
+                            messages: arrayUnion({
+                                id: uuid(),
+                                text,
+                                senderId: currentUser.uid,
+                                date: Timestamp.now(),
+                                image: downloadURL,
+                            })
+                        })
+                    })
+                }
+            );
+
+        } else {
+            await updateDoc(doc(db, "chats", data.chatId), {
+                messages: arrayUnion({
+                    id: uuid(),
+                    text,
+                    senderId: currentUser.uid,
+                    date: Timestamp.now(),
+                })
+            })
+            console.log(Timestamp.now());
+        }
+
+        await updateDoc(doc(db, "userChats", currentUser.uid), {
+            [data.chatId + ".lastMessage"]: {
+                text,
+            },
+            [data.chatId + ".date"]: serverTimestamp(),
+        });
+
+        await updateDoc(doc(db, "userChats", data.user.uid), {
+            [data.chatId + ".lastMessage"]: {
+                text,
+            },
+            [data.chatId + ".date"]: serverTimestamp(),
+        });
+
+        setText('');
+        setImage(null);
+    };
+
     return (
         <div className="message">
             <div className="message-container">
-                <textarea placeholder="Type Something..." className="auto_height" onInput={(e) => auto_height(e)}></textarea>
+                <textarea placeholder="Type Something..." value={text} className="auto_height" onInput={(e) => auto_height(e)} onChange={e => setText(e.target.value)}></textarea>
                 <div className="send-utils">
-                    <img src="src\assets\paperclip.jpeg" width='30px' height="30px"></img>
-                    <img src="src\assets\addphoto.png" width='30px' height="30px"></img>
-                    <button>Send</button>
+                    {/* <img src="src\assets\addphoto.png" width='30px' height="30px"></img> */}
+                    <input type='file' style={{ display: 'none' }} id="file" onChange={e => setImage(e.target.files[0])}></input>
+                    <label htmlFor="file" style={{ display: 'flex', gap: '20px' }}>
+                        <img src="src\assets\attach.png" style={{marginTop: '10px'}} width='25px' height="25px"></img>
+                    </label>
+                    <button onClick={handleSend}>Send</button>
                 </div>
             </div>
-            {/* <div className="msg-utils"> */}
-            {/* </div> */}
         </div>
     )
 };

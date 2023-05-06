@@ -1,64 +1,50 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import './rightstyles.scss';
 import { doc, onSnapshot } from 'firebase/firestore';
 import { db } from '../../firebase';
-import { AuthContext } from '../../context/AuthContext';
 import { ChatContext } from '../../context/chatContext';
+import { AuthContext } from '../../context/AuthContext';
 
 const Chatting = () => {
   const [chat, setChat] = useState([]);
   const [messages, setMessages] = useState([]);
 
+  const { data } = useContext(ChatContext);
   const { currentUser } = useContext(AuthContext);
-  const { data, dispatch } = useContext(ChatContext);
+
+  const ref = useRef();
 
   useEffect(() => {
-    const getChats = () => {
-      const unsub = onSnapshot(doc(db, 'userChats', currentUser.uid), (doc) => {
-        setChat(doc.data());
-      });
+    const unsub = onSnapshot(doc(db, 'chats', data.chatId), (doc) => {
+      doc.exists() && setMessages(doc.data().messages);
+    });
 
-      return () => {
-        unsub()
-      };
-    }
+    ref.current?.scrollIntoView({ behavior: 'smooth' });
 
-    currentUser.uid && getChats();
-  }, [currentUser.uid])
-  
+    return () => {
+      unsub();
+    };
+
+  }, [data.chatId, messages]);
 
   console.log(chat);
-
-  const handleSelect = (u) => {
-    dispatch({
-      type: "CHANGE_USER",
-      payload: u
-    })
-  }
 
   return (
     <div>
       {
-        Object.entries(chat)?.map((chat) => (
-          <div className='chat owner'>
+        messages?.map((m) => (
+          console.log(m),
+          <div className={`chat ${m.senderId === currentUser.uid && "owner"}`}>
             <div className='user-time'>
-              <img src={chat[1].userInfo.photoURL} width='35px' height='35px'></img>
-              <p>time</p>
+              <img src={m.senderId === currentUser.uid ? currentUser.photoURL : data.user.photoURL} width='35px' height='35px'></img>
+              <p style={{ color: 'white' }}>{m.data}</p>
             </div>
             <div className='user-chats'>
-              <p className='uchat'>user chats</p>
+              <p className='uchat'>{m.text}</p>
+              {m.img && <img src={m.img} width='200px' height='200px' />}
             </div>
           </div>
         ))}
-      <div className='chat'>
-        <div className='user-time'>
-          <img src='src/assets/profile.png' width='35px' height='35px'></img>
-          <p>time</p>
-        </div>
-        <div className='user-chats'>
-          <p className='uchat'>user chats</p>
-        </div>
-      </div>
     </div>
   )
 }

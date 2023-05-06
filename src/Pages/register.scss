@@ -2,7 +2,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 
-.login-container{
+@mixin mobile{
+    @media screen and (max-width: 480px){
+        @content;
+    }
+}
+
+@mixin tablet{
+    @media screen and (max-width: 786px){
+        @content;
+    }
+}
+
+@mixin laptop{
+    @media screen and (max-width: 1200px){
+        @content;
+    }
+}
+
+.register-container{
     background-color: blueviolet;
     height: 100vh;
     width: 100%;
@@ -10,15 +28,15 @@
     align-items: center;
     justify-content: center;
     
-    .login-wrapper{
+    .register-wrapper{
         
-        .login-title , .login-title2{
+        .register-title , .register-title2{
             color: blueviolet;
             padding: 2px;
             font-family: 'Courgette', cursive;
         }
 
-        .login-title2{
+        .register-title2{
             font-size: 25px;
         }
 
@@ -38,6 +56,8 @@
                 border-bottom: 2px solid blueviolet;
                 height: 4vh;
                 padding: 2%;
+                font-size: 1rem;
+                font-family: 'Josefin Sans', sans-serif;
             }
 
             .user:focus, .pwd:focus{
@@ -67,6 +87,11 @@
                 padding: 13px;
                 margin-top: 3%;
                 cursor: pointer;
+                border-radius: 15px 15px 15px 15px;
+                &:hover{
+                    background-color: white;
+                    color: blueviolet;
+                }
             }
         }
         background-color: white;
@@ -75,6 +100,10 @@
         width: 25%;
         text-align: center;
         border-radius: 5%;
+        @include laptop{
+            width: 40%;
+            height: 77%;
+        }
     }
 }
 

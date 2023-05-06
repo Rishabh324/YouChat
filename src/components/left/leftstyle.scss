@@ -135,7 +135,9 @@
 
         p{
             padding-top: 3px;
+            max-width: fit-content;
             @include tablet{
+                max-width: fit-content;
                 font-size: 0.8rem;
             }
         }

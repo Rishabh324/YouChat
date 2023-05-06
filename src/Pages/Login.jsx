@@ -41,6 +41,7 @@ const Login = () => {
                     <input className="user" name='email' type="text" placeholder="Email" onChange={handleChange} />
                     <input className="pwd" name='pswd' type="password" placeholder="Password" onChange={handleChange} />
                     <button className="sb-btn" type="submit" onClick={handleClick}>Login</button>
+                    {err && <p>User does not exist!</p>}
                 </form>
                 <p className="reg-temp">Don't have an account? <span className="reg"><Link to='/register'>Register</Link></span></p>
             </div>

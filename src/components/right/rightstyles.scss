@@ -47,6 +47,10 @@
             gap: 20px;
             align-items: center;
             justify-content: center;
+            
+            img{
+                cursor: pointer;
+            }
         }
 
         .allyname{
@@ -74,7 +78,7 @@
     padding: 15px;
     overflow-y: scroll;
     @include tablet{
-        height: calc(100% - 125px);
+        height: calc(100% - 135px);
     }
     
     .chat{
@@ -108,6 +112,7 @@
                 p{
                     background-color: #397FF9;
                     color: white;
+                    max-width: 80%;
                     border-radius: 10px 0 10px 10px;
                 }
             }
@@ -131,6 +136,10 @@
             margin-right: 20px;
             display: flex;
             gap: 20px;
+
+            button{
+                cursor: pointer;
+            }
         }
 
         .auto_height {
@@ -149,6 +158,10 @@
             color: #b9b9c1;
             border-bottom: 1px solid #3E3C61;
             background-color: #202231;
+            @include tablet{
+                font-size: 1rem;
+                height: 25px;
+            }
         }
 
         img{

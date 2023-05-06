@@ -1,11 +1,15 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
-import { doc, getDoc, setDoc, updateDoc, serverTimestamp } from 'firebase/firestore';
+import { doc, getDoc, setDoc, updateDoc, serverTimestamp, onSnapshot } from 'firebase/firestore';
 import { db } from '../../firebase';
 import './leftstyle.scss';
+import { ChatContext } from '../../context/chatContext';
 
-const Chats = (user, removeUser) => {
+const Chats = (user) => {
+    const [chat, setChat] = useState([]);
+
     const { currentUser } = useContext(AuthContext);
+    const { dispatch } = useContext(ChatContext);
 
     const handleSelect = async () => {
 
@@ -36,15 +40,40 @@ const Chats = (user, removeUser) => {
             }
         } catch (e) { }
 
-        removeUser();
+        user.removeUser();
 
     };
+    
+    useEffect(() => {
+        const getChats = () => {
+            const unsub = onSnapshot(doc(db, 'userChats', currentUser.uid), (doc) => {
+                setChat(doc.data());
+            });
+
+            return () => {
+                unsub()
+            };
+        }
+
+        currentUser.uid && getChats();
+    }, [currentUser.uid])
+
+    console.log(Object.entries(chat));
+    const handleClick = (u) => {
+        dispatch({
+            type: "CHANGE_USER",
+            payload: u
+        })
+        handleSelect();
+    }
 
     return (
-        <div className="chats" onClick={handleSelect}>
-            <img src={user.user.photoURL} width="30px" height='30px' ></img>
-            <div>
-                <p style={{ color: 'white' }}>{user.user.displayName}</p>
+        <div>
+            <div className="chats" onClick={() => handleClick(user.user)}>
+                <img src={user.user.photoURL} width="30px" height='30px' ></img>
+                <div>
+                    <p style={{ color: 'white' }}>{user.user.displayName}</p>
+                </div>
             </div>
         </div>
     )
