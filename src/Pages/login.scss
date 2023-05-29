@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Courgette&family=Kanit:ital@1&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kalam&display=swap');
 
 @mixin mobile{
     @media screen and (max-width: 480px){
@@ -33,7 +34,7 @@
         
         .login-title , .login-title2{
             color: white;
-            font-family: 'Courgette', cursive;
+            font-family: 'Kalam', cursive;
         }
         
         .login-title2{
@@ -89,6 +90,13 @@
                 }
             }
         }
+
+        .reg-temp{
+            color: white;
+            font-family: "Kanit", sans-serif;
+            font-size: 1.1rem;
+        }
+
         margin-left: 15%;
         background-color: #397FF9;
         padding: 25px;

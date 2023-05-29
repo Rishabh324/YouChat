@@ -76,7 +76,7 @@ const Register = () => {
     return (
         <div className="register-container">
             <div className="register-wrapper">
-                <h1 className="register-title">MatesApp</h1>
+                <h1 className="register-title">YouChat</h1>
                 <p className="register-title2">Register</p>
                 <form className="register-form">
                     <input className="user" name='user' type="text" placeholder="Username" onChange={handleChange} />
