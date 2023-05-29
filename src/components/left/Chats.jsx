@@ -3,7 +3,7 @@ import { AuthContext } from '../../context/AuthContext';
 import { doc, getDoc, setDoc, updateDoc, serverTimestamp, onSnapshot } from 'firebase/firestore';
 import { db } from '../../firebase';
 import './leftstyle.scss';
-import { ChatContext } from '../../context/chatContext';
+import { ChatContext } from '../../context/ChatContext';
 
 const Chats = (user) => {
     const [chat, setChat] = useState([]);

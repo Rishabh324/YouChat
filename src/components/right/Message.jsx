@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import { ChatContext } from "../../context/chatContext";
+import { ChatContext } from "../../context/ChatContext";
 import { Timestamp, arrayUnion, doc, serverTimestamp, updateDoc } from "firebase/firestore";
 import { v4 as uuid } from 'uuid';
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";

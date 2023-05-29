@@ -3,7 +3,7 @@ import './leftstyle.scss'
 import { doc, onSnapshot } from 'firebase/firestore';
 import { db } from '../../firebase';
 import { AuthContext } from '../../context/AuthContext';
-import { ChatContext } from '../../context/chatContext';
+import { ChatContext } from '../../context/ChatContext';
 
 const List = () => {
     const [chat, setChat] = useState([]);

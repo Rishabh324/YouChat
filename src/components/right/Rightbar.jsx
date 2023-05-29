@@ -3,7 +3,7 @@ import Message from "./Message";
 import "./rightstyles.scss"
 import Chatting from "./Chatting";
 import Nothing from "./Nothing";
-import { ChatContext } from "../../context/chatContext";
+import { ChatContext } from "../../context/ChatContext";
 import { useContext, useEffect, useState } from "react";
 
 const Rightbar = () => {

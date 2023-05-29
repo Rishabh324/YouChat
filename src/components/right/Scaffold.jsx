@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import './rightstyles.scss'
-import { ChatContext } from '../../context/chatContext';
+import { ChatContext } from '../../context/ChatContext';
 
 const Scaffold = () => {
   const { data } = useContext(ChatContext);

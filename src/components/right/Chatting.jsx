@@ -2,7 +2,7 @@ import { useContext, useEffect, useRef, useState } from 'react';
 import './rightstyles.scss';
 import { doc, onSnapshot } from 'firebase/firestore';
 import { db } from '../../firebase';
-import { ChatContext } from '../../context/chatContext';
+import { ChatContext } from '../../context/ChatContext';
 import { AuthContext } from '../../context/AuthContext';
 
 const Chatting = () => {
