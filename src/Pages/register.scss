@@ -20,18 +20,26 @@
     }
 }
 
+@mixin mobileh{
+    @media screen and (max-height: 499px){
+        @content;
+    }
+}
+
 .register-container{
-    background-color: blueviolet;
+	background-image: url(./src/assets/MATESAPP.png);
+    background-size: cover;
+    background-repeat: no-repeat;
     height: 100vh;
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
     
     .register-wrapper{
+        margin-left: 12%;
         
         .register-title , .register-title2{
-            color: blueviolet;
+            color: white;
             padding: 2px;
             font-family: 'Courgette', cursive;
         }
@@ -43,6 +51,7 @@
         .reg{
             font-family: 'Kanit', sans-serif;
             cursor: pointer;
+            color: white;
         }
 
         form{
@@ -53,21 +62,20 @@
             
             .user, .mail, .pwd{
                 border: none;
-                border-bottom: 2px solid blueviolet;
+                border-bottom: 2px solid black;
                 height: 4vh;
                 padding: 2%;
                 font-size: 1rem;
                 font-family: 'Josefin Sans', sans-serif;
             }
 
-            .user:focus, .pwd:focus{
+            .user:focus, .mail:focus, .pwd:focus{
+                border-bottom: 2px solid black;
                 outline: none;
             }
 
             .avat-div{
                 display: flex;
-                align-items: center;
-                justify-content: start;
                 cursor: pointer;
                 font-family: 'Kanit', sans-serif;
 
@@ -79,30 +87,39 @@
                     cursor: pointer;
                 }
 
+                #avt-test{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    img{
+                        width: 35px;
+                        margin-right: 10px;
+                    }
+                }
             }
             
             .sb-btn{
-                background-color: blueviolet;
+                background-color: #EDD138;
                 color: white;
                 padding: 13px;
-                margin-top: 3%;
                 cursor: pointer;
                 border-radius: 15px 15px 15px 15px;
                 &:hover{
-                    background-color: white;
-                    color: blueviolet;
+                    color: black;
                 }
             }
         }
-        background-color: white;
+        background-color: #397FF9;
         padding: 20px;
-        height: 60vh;
+        height: fit-content;
         width: 25%;
         text-align: center;
-        border-radius: 5%;
+        border-radius: 20px;
         @include laptop{
-            width: 40%;
-            height: 77%;
+            width: fit-content;
+            height: fit-content;
+            margin-left: 22%;
         }
     }
 }

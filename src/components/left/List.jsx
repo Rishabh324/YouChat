@@ -49,7 +49,6 @@ const List = () => {
     return (
         <div className="list">
             {Object.entries(chat)?.sort((a, b) => b[1].date - a[1].date).map((chat) => {
-                console.log(chat);
                 return (
                     <div className="userchat" onClick={() => handleClick(chat[1].userInfo)}>
                         <img src={chat[1].userInfo.photoURL} width="40px" height='40px' />

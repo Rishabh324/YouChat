@@ -12,13 +12,27 @@ const Login = () => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        // console.log(name, 'hello', value);
         if (name === "email") {
             setEmail(value);
         } else if (name === "pswd") {
             setPswd(value);
         }
     }
+
+    const myFunction = () => {
+        var x = document.getElementById("pwd");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    };
+
+    const styleForShowPassLabel = {
+        color: "white",
+        userSelect: "none",
+    };
+
 
     const handleClick = async (e) => {
         e.preventDefault();
@@ -39,7 +53,13 @@ const Login = () => {
                 <p className="login-title2">Login</p>
                 <form className="login-form">
                     <input className="user" name='email' type="text" placeholder="Email" onChange={handleChange} />
-                    <input className="pwd" name='pswd' type="password" placeholder="Password" onChange={handleChange} />
+                    <input className="pwd" id='pwd' name='pswd' type="password" placeholder="Password" onChange={handleChange} />
+                    <div style={{ display: "flex" }}>
+                        <input type="checkbox" onClick={myFunction} id="showpass" />
+                        <label style={styleForShowPassLabel} htmlFor="showpass">
+                            Show Password
+                        </label>
+                    </div>
                     <button className="sb-btn" type="submit" onClick={handleClick}>Login</button>
                     {err && <p>User does not exist!</p>}
                 </form>

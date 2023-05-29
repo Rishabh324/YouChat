@@ -57,8 +57,7 @@ const Chats = (user) => {
 
         currentUser.uid && getChats();
     }, [currentUser.uid])
-
-    console.log(Object.entries(chat));
+    
     const handleClick = (u) => {
         dispatch({
             type: "CHANGE_USER",
@@ -72,7 +71,7 @@ const Chats = (user) => {
             <div className="chats" onClick={() => handleClick(user.user)}>
                 <img src={user.user.photoURL} width="30px" height='30px' ></img>
                 <div>
-                    <p style={{ color: 'white' }}>{user.user.displayName}</p>
+                    <p className='list-chat' style={{ color: 'white' }}>{user.user.displayName}</p>
                 </div>
             </div>
         </div>

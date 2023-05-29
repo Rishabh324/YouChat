@@ -28,6 +28,13 @@ const Register = () => {
 
     const onChangePicture = e => {
         setProfimg(e.target.files[0]);
+        if (e.target.files[0]) {
+            document.getElementById(
+                "avt-test"
+            ).innerHTML = `<img src=${URL.createObjectURL(
+                e.target.files[0]
+            )} alt="" /> <span>${e.target.files[0].name} </span>`;
+        }
     };
 
     const handleClick = async (e) => {
@@ -76,8 +83,7 @@ const Register = () => {
                     <input className="mail" name='mail' type="email" placeholder="Email" onChange={handleChange} />
                     <input className="pwd" name='pwd' type="password" placeholder="Password" onChange={handleChange} />
                     <div className="avat-div">
-                        <img src='src/assets/add.png'></img>
-                        <label htmlFor='file' className="avatar-txt">Add an avatar</label>
+                        <label htmlFor='file' id='avt-test' className="avatar-txt"><img src='src/assets/add.png'></img><p>Add an avatar</p></label>
                         <input type="file" id="file" multiple='single' name="file" accept="image/*" onChange={onChangePicture} />
                     </div>
                     <button className="sb-btn" type="submit" onClick={handleClick}>Register</button>

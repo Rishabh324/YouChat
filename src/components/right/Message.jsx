@@ -4,7 +4,7 @@ import { ChatContext } from "../../context/chatContext";
 import { Timestamp, arrayUnion, doc, serverTimestamp, updateDoc } from "firebase/firestore";
 import { v4 as uuid } from 'uuid';
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
-import { db } from "../../firebase";
+import { db, storage } from "../../firebase";
 
 const Message = () => {
 
@@ -15,7 +15,6 @@ const Message = () => {
     const { data } = useContext(ChatContext);
 
     const auto_height = (e) => {
-        console.log(e);
         e.height = "1px";
         e.height = (e.scrollHeight) + "px";
     }
@@ -23,7 +22,8 @@ const Message = () => {
     const handleSend = async () => {
 
         if (image) {
-            const storageRef = ref(storage, uuid());
+            console.log("image");
+            const storageRef = ref(storage, `chatImg/${image.name}`);
             const uploadTask = uploadBytesResumable(storageRef, image);
 
 
@@ -52,7 +52,6 @@ const Message = () => {
                     date: Timestamp.now(),
                 })
             })
-            console.log(Timestamp.now());
         }
 
         await updateDoc(doc(db, "userChats", currentUser.uid), {
@@ -78,10 +77,9 @@ const Message = () => {
             <div className="message-container">
                 <textarea placeholder="Type Something..." value={text} className="auto_height" onInput={(e) => auto_height(e)} onChange={e => setText(e.target.value)}></textarea>
                 <div className="send-utils">
-                    {/* <img src="src\assets\addphoto.png" width='30px' height="30px"></img> */}
                     <input type='file' style={{ display: 'none' }} id="file" onChange={e => setImage(e.target.files[0])}></input>
                     <label htmlFor="file" style={{ display: 'flex', gap: '20px' }}>
-                        <img src="src\assets\attach.png" style={{marginTop: '10px'}} width='25px' height="25px"></img>
+                        <img src="src\assets\attach.png" style={{ marginTop: '10px' }} width='25px' height="25px"></img>
                     </label>
                     <button onClick={handleSend}>Send</button>
                 </div>

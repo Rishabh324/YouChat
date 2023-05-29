@@ -4,8 +4,7 @@ import { ChatContext } from '../../context/chatContext';
 
 const Scaffold = () => {
   const { data } = useContext(ChatContext);
-
-  console.log(data);
+  
   return (
     <div className="scaffold">
       <div className='topbar'>

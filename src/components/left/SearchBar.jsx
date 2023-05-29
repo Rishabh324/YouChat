@@ -12,13 +12,11 @@ const SearchBar = () => {
         const q = query(collection(db, 'users'), where('displayName', '==', username));
 
         try {
-            console.log(q);
             const querySnapshot = await getDocs(q);
             querySnapshot.forEach((doc) => {
                 setUser(doc.data());
             })
         } catch (e) {
-            console.log(e);
             setErr(true);
         }
     };

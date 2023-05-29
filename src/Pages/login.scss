@@ -21,29 +21,30 @@
 }
 
 .login-container{
-    background-color: blueviolet;
+    background-image: url(./src/assets/MATESAPP.png);
+    background-size: cover;
+    background-repeat: no-repeat;
     height: 100vh;
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
     
     .login-wrapper{
         
         .login-title , .login-title2{
-            color: blueviolet;
+            color: white;
             font-family: 'Courgette', cursive;
         }
-
+        
         .login-title2{
             margin-top: 0.8rem;
             font-size: 25px;
         }
-
+        
         .reg{
             font-family: 'Kanit', sans-serif;
         }
-
+        
         form{
             display: flex;
             flex-direction: column;
@@ -52,36 +53,52 @@
             
             .user, .pwd{
                 border: none;
-                border-bottom: 2px solid blueviolet;
+                border-bottom: 2px solid black;
+                font-size: 1rem;
+                font-family: 'Ubuntu', sans-serif;
                 height: 5vh;
                 padding: 2%;
             }
-
+            
             .user:focus, .pwd:focus{
+                border-bottom: 2px solid black;
                 outline: none;
             }
+
+            input#showpass {
+                min-width: 20px;
+
+            }
             
+            label{
+                font-family: 'Ubuntu', sans-serif;
+                margin-left: 10px;
+            }
+
             .sb-btn{
-                background-color: blueviolet;
+                background-color: #EDD138;
                 color: white;
                 padding: 13px;
                 margin-top: 5%;
+                font-family: 'Ubuntu', sans-serif;
+                font-size: 1rem;
                 border-radius: 15px 15px 15px 15px;
                 cursor: pointer;
                 &:hover{
-                    color: blueviolet;
+                    color: black;
                 }
             }
         }
-        background-color: white;
+        margin-left: 15%;
+        background-color: #397FF9;
         padding: 25px;
-        height: 50%;
-        width: 25%;
+        height: fit-content;
+        width: 22%;
         text-align: center;
         border-radius: 5%;
         @include laptop{
-            width: 40%;
-            height: 60%;
+            width: fit-content;
+            height: fit-content;
         }
     }
 }

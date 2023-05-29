@@ -27,21 +27,19 @@ const Chatting = () => {
 
   }, [data.chatId, messages]);
 
-  console.log(chat);
 
   return (
     <div>
       {
         messages?.map((m) => (
-          console.log(m),
-          <div className={`chat ${m.senderId === currentUser.uid && "owner"}`}>
+          <div ref={ref} className={`chat ${m.senderId === currentUser.uid && "owner"}`}>
             <div className='user-time'>
               <img src={m.senderId === currentUser.uid ? currentUser.photoURL : data.user.photoURL} width='35px' height='35px'></img>
               <p style={{ color: 'white' }}>{m.data}</p>
             </div>
             <div className='user-chats'>
-              <p className='uchat'>{m.text}</p>
-              {m.img && <img src={m.img} width='200px' height='200px' />}
+              {m.text && <p className='uchat'>{m.text}</p>}
+              {m.image && <img src={m.image} className="chatImage" width='200px' height='200px' />}
             </div>
           </div>
         ))}

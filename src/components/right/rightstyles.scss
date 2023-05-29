@@ -26,6 +26,16 @@
     border-left: 1px solid #397FF9;
     width: 100px;
     font-family: 'Ubuntu', sans-serif;
+
+    .rightcont{
+        height: 100%;
+    }
+}
+
+.nothing{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .scaffold{
@@ -88,12 +98,10 @@
         
         .user-chats{
             max-width: 80%;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
 
             p{
                 background-color: #202231;
+                word-break: break-all;
                 color: white;
                 padding: 10px;
                 border-radius: 0 10px 10px 10px;
@@ -106,13 +114,16 @@
             object-fit: cover;
         }
 
+        .chatImage{
+            border-radius: 10px 10px 10px 10px;
+        }
+
         &.owner{
             flex-direction: row-reverse;
             .user-chats{
                 p{
                     background-color: #397FF9;
                     color: white;
-                    max-width: 80%;
                     border-radius: 10px 0 10px 10px;
                 }
             }
@@ -182,5 +193,4 @@
             border-radius: 24px 24px 24px 24px;
         }
     }
-
 }
