@@ -5,6 +5,7 @@ import { Timestamp, arrayUnion, doc, serverTimestamp, updateDoc } from "firebase
 import { v4 as uuid } from 'uuid';
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { db, storage } from "../../firebase";
+import ATTACH from "../../assets/attach.png";
 
 const Message = () => {
 
@@ -79,7 +80,7 @@ const Message = () => {
                 <div className="send-utils">
                     <input type='file' style={{ display: 'none' }} id="file" onChange={e => setImage(e.target.files[0])}></input>
                     <label htmlFor="file" style={{ display: 'flex', gap: '20px' }}>
-                        <img src="src\assets\attach.png" style={{ marginTop: '10px' }} width='25px' height="25px"></img>
+                        <img src={ATTACH} style={{ marginTop: '10px' }} width='25px' height="25px"></img>
                     </label>
                     <button onClick={handleSend}>Send</button>
                 </div>

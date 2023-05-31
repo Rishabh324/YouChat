@@ -5,6 +5,7 @@ import { auth, db, storage } from '../firebase';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
 import { useNavigate, Link } from "react-router-dom";
+import ADD from '../assets/add.png';
 
 const Register = () => {
     const [user, setUser] = useState(null);
@@ -83,7 +84,7 @@ const Register = () => {
                     <input className="mail" name='mail' type="email" placeholder="Email" onChange={handleChange} />
                     <input className="pwd" name='pwd' type="password" placeholder="Password" onChange={handleChange} />
                     <div className="avat-div">
-                        <label htmlFor='file' id='avt-test' className="avatar-txt"><img src='src/assets/add.png'></img><p>Add an avatar</p></label>
+                        <label htmlFor='file' id='avt-test' className="avatar-txt"><img src={ADD}></img><p>Add an avatar</p></label>
                         <input type="file" id="file" multiple='single' name="file" accept="image/*" onChange={onChangePicture} />
                     </div>
                     <button className="sb-btn" type="submit" onClick={handleClick}>Register</button>
