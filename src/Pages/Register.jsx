@@ -1,11 +1,12 @@
 import "./register.scss";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db, storage } from '../firebase';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
 import { useNavigate, Link } from "react-router-dom";
 import ADD from '../assets/add.png';
+import BKG from '../assets/MATESAPP.png';
 
 const Register = () => {
     const [user, setUser] = useState(null);
@@ -75,7 +76,7 @@ const Register = () => {
     }
 
     return (
-        <div className="register-container">
+        <div className="register-container" style={{ backgroundImage: `url(${BKG})` }}>
             <div className="register-wrapper">
                 <h1 className="register-title">YouChat</h1>
                 <p className="register-title2">Register</p>

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate, Link } from "react-router-dom";
 import { auth } from '../firebase';
+import BKG from '../assets/MATESAPP.png';
 
 const Login = () => {
     const [email, setEmail] = useState(null);
@@ -47,7 +48,7 @@ const Login = () => {
     }
 
     return (
-        <div className="login-container">
+        <div className="login-container" style={{ backgroundImage: `url(${BKG})` }}>
             <div className="login-wrapper">
                 <h1 className="login-title">YouChat</h1>
                 <p className="login-title2">Login</p>
