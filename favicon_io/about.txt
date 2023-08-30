@@ -1,0 +1,6 @@
+This favicon was generated using the following font:
+
+- Font Title: Alkatra
+- Font Author: Copyright 2022 The Alkatra Project Authors (https://github.com/suman51284/Alkatra)
+- Font Source: http://fonts.gstatic.com/s/alkatra/v3/r05EGLZA5qhCYsyJbuChFuK48Medzngmu7cPrNDVemxE.ttf
+- Font License: SIL Open Font License, 1.1 (http://scripts.sil.org/OFL))
